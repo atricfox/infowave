@@ -1,0 +1,17 @@
+[[source]]
+url = "https://mirrors.aliyun.com/pypi/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+openai = "*"
+ollama = "*"
+requests = "*"
+pyexecjs = "*"
+python-dotenv = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.12"
+python_full_version = "3.12.4"
