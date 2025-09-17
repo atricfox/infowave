@@ -32,7 +32,14 @@ class Cliper:
         ]
 
     def update_web_clips(self, url, next_cursor=None):
-        params = {}
+        params = {
+            "filter": {
+                "property": "updated",
+                "checkbox": {
+                    "equals": False
+                }
+            }
+        }
         if next_cursor:
             params['start_cursor'] = next_cursor
 
