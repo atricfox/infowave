@@ -1,5 +1,5 @@
 import os
-import requests
+import custom_requests as requests
 import json
 import time
 import re

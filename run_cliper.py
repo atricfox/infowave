@@ -66,6 +66,8 @@ def main() -> int:
         cliper.update_web_clips(database_url, args.start_cursor)
     except Exception as exc:
         print(f"处理失败: {exc}")
+        import traceback
+        traceback.print_exc()
         return 1
     return 0
 

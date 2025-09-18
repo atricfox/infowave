@@ -4,7 +4,7 @@ import re
 import time
 from typing import Optional
 
-import requests
+import custom_requests as requests
 
 from glm_ai import GlmAi
 
@@ -176,6 +176,10 @@ class Cliper:
                 resp = exc.response
                 detail = resp.text if resp else str(exc)
                 status = resp.status_code if resp else 'unknown'
+                print(f"请求URL: {url}")
+                print(f"请求数据: {data}")
+                print(f"响应状态: {status}")
+                print(f"响应内容: {detail}")
                 raise RuntimeError(f"Notion API 请求失败 {status}: {detail}") from exc
             except requests.RequestException as exc:
                 reason = getattr(exc, 'reason', None) or str(exc)

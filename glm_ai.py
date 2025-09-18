@@ -95,6 +95,18 @@ class GlmAi:
         try:
             response.raise_for_status()
         except requests.HTTPError as exc:
+            error_data = response.json() if response.text else {}
+            error_code = error_data.get("error", {}).get("code", "")
+            
+            if error_code == "1301":
+                print(f"内容被GLM过滤器拦截，跳过处理")
+                raise ValueError("内容被过滤，无法处理") from exc
+            
+            print(f"GLM API请求URL: {self.base_url}")
+            print(f"GLM API请求头: {headers}")
+            print(f"GLM API请求数据: {payload}")
+            print(f"GLM API响应状态: {response.status_code}")
+            print(f"GLM API响应内容: {response.text}")
             raise RuntimeError(
                 f"GLM 接口请求失败 {response.status_code}: {response.text}"
             ) from exc
